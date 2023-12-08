@@ -46,7 +46,7 @@
 - belong_to :item
 
 
-## address テーブル
+## addresses テーブル
 
 | Column                | Type       | Options                       |
 | --------------------- | ---------- | ----------------------------- |
