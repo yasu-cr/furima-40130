@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :estimated_delivery
 
   validates :category_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :product_description_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :product_condition_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipping_fee_payer_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipping_region_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :estimated_delivery_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
