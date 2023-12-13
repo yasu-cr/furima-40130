@@ -6,7 +6,10 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee_payer
   belongs_to :shipping_region
   belongs_to :estimated_delivery
-
+  
+  validates :image, presence: true
+  validates :product, presence: true
+  validates :product_description, presence: true
   validates :category_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :product_condition_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipping_fee_payer_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
