@@ -1,11 +1,13 @@
 class Item < ApplicationRecord
   has_one_attached :image
+  has_one :user
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :product_condition
   belongs_to :shipping_fee_payer
   belongs_to :shipping_region
   belongs_to :estimated_delivery
+  belongs_to :user
   
   validates :image, presence: true
   validates :product, presence: true
@@ -15,4 +17,5 @@ class Item < ApplicationRecord
   validates :shipping_fee_payer_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipping_region_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :estimated_delivery_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :price, presence: true
 end
