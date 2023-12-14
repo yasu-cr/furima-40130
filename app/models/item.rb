@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-  belongs_to :product_description
+  belongs_to :product_condition
   belongs_to :shipping_fee_payer
   belongs_to :shipping_region
   belongs_to :estimated_delivery
