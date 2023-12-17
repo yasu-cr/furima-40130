@@ -12,3 +12,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
       profitDom.innerHTML = profit.toLocaleString();
   });
 });
+
+window.addEventListener("turbo:load", priceInput);
+window.addEventListener("turbo:render", priceInput);
