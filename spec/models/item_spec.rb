@@ -13,9 +13,9 @@ RSpec.describe Item, type: :model do
 
   context '商品登録できないとき' do
     it 'productが空のとき' do
-    @item.product = ''
-    @item.valid?
-    expect(@item.errors.full_messages).to include("Product can't be blank")
+      @item.product = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Product can't be blank")
     end
     it 'category_idが空のとき' do
       @item.category_id = 1
@@ -45,7 +45,7 @@ RSpec.describe Item, type: :model do
     it 'priceが空のとき' do
       @item.price = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank")
+      expect(@item.errors.full_messages).to include('Price is not a number')
     end
     it 'imageが添付されていないとき' do
       @item.image = nil
@@ -55,17 +55,27 @@ RSpec.describe Item, type: :model do
     it 'priceが半角数字以外が含まれるとき' do
       @item.price = '１０００'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      expect(@item.errors.full_messages).to include('Price is not a number')
     end
     it 'priceが300未満のとき' do
       @item.price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
     end
     it 'priceが10000000以上のとき' do
-      @item.price = 10000000
+      @item.price = 10_000_000
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
+    end
+    it '商品説明がからでは出品できない' do
+      @item.product_description = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Product description can't be blank")
+    end
+    it 'userが紐付いていなければ出品できない' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
     end
   end
 end
