@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_tweet, only: [:show]
 
   def index
     @items = Item.order('created_at DESC')
@@ -18,7 +19,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
+
+  def set_tweet
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:product, :image, :category_id, :product_condition_id, :shipping_fee_payer_id,
