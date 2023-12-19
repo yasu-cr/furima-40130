@@ -8,7 +8,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_region
   belongs_to :estimated_delivery
   belongs_to :user
-  has_one :purchase
 
   validates :image, presence: true
   validates :product, presence: true
