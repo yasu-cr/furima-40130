@@ -5,6 +5,12 @@ RSpec.describe PurchaseAddress, type: :model do
     @purchase_address = FactoryBot.build(:purchase_address)
   end
 
+  context '内容に問題ない場合' do
+    it "priceとtokenがあれば保存ができること" do
+      expect(@order).to be_valid
+    end
+  end
+
   context '購入情報が保存できないとき' do
     it '郵便番号が必須であること' do
       @purchase_address.postal_code = ''
