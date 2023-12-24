@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
-    else
+    els
       render :new, status: :unprocessable_entity
     end
   end
@@ -23,9 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user == current_user
-      render 'edit'
-    else
+    if @item.purchase.present? || current_user != @item.user
       redirect_to root_path
     end
   end
