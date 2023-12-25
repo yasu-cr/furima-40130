@@ -41,7 +41,7 @@ class PurchasesController < ApplicationController
   end
 
   def redirect_if_seller_or_sold_out
-    if current_user.id ==  @item.user_id || @item.purchase.present?
+    if current_user.id == @item.user_id || @item.purchase.present?
       redirect_to root_path
     end
   end

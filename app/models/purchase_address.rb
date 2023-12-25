@@ -12,7 +12,7 @@ class PurchaseAddress
     validates :token, presence: true
     
   end
-  validates :shipping_region_id, numericality: {other_than: 0, message: "can't be blank"}
+  validates :shipping_region_id, numericality: {other_than: 1, message: "can't be blank"}
 
   def save
  
