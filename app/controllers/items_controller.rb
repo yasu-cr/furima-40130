@@ -12,20 +12,20 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path
+    return unless @item.save
+
+    redirect_to root_path
     els
-      render :new, status: :unprocessable_entity
-    end
+    render :new, status: :unprocessable_entity
   end
 
   def show
   end
 
   def edit
-    if @item.purchase.present? || current_user != @item.user
-      redirect_to root_path
-    end
+    return unless @item.purchase.present? || current_user != @item.user
+
+    redirect_to root_path
   end
 
   def update
