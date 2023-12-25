@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: [:index, :create, :new]
-  before_action :redirect_if_seller_or_sold_out, only: [:index, :new, :create]
+  before_action :set_item, only: [:index, :create]
+  before_action :redirect_if_seller_or_sold_out, only: [:index, :create]
 
   def create
     @purchase_address = PurchaseAddress.new(purchase_params)
@@ -17,7 +17,6 @@ class PurchasesController < ApplicationController
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @items = Item.order('created_at DESC')
     @purchase_address = PurchaseAddress.new
   end
 

@@ -38,13 +38,14 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Shipping region can't be blank")
       end
       it '市区町村が必須であること' do
-        @purchase_address.city = '1234567'
-        @purchase_address.valid?
-      end
-      it '番地が必須であること' do
         @purchase_address.city = ''
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("City can't be blank")
+      end
+      it '番地が必須であること' do
+        @purchase_address.street_address = ''
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Street address can't be blank")
       end
       it '電話番号が必須であること' do
         @purchase_address.telephone_number = ''
@@ -52,14 +53,19 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Telephone number can't be blank")
       end
       it '電話番号が正しい形式でないと保存できないこと' do
-        @purchase_address.postal_code = '090-1234-5678'
+        @purchase_address.telephone_number = '090-1234-5678'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@purchase_address.errors.full_messages).to include('Telephone number Input only number')
       end
-      it '電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと' do
-        @purchase_address.postal_code = '090123456789'
+      it '電話番号は、9桁以下の場合登録できないこと' do
+        @purchase_address.telephone_number = '090123456'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@purchase_address.errors.full_messages).to include('Telephone number Input only number')
+      end
+      it '電話番号は、12桁以上の場合登録できないこと' do
+        @purchase_address.telephone_number = '090123456789'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Telephone number Input only number')
       end
       it 'userが紐付いてないと保存できないこと' do
         @purchase_address.user_id = ''
