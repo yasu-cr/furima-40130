@@ -50,9 +50,9 @@
 
 | Column                | Type       | Options                       |
 | --------------------- | ---------- | ----------------------------- |
-| post_code             | string     | null: false                   |
+| postal_code           | string     | null: false                   |
 | shipping_region_id    | integer    | null: false                   |
-| municipalities        | string     | null: false                   |
+| city                  | string     | null: false                   |
 | street_address        | string     | null: false                   |
 | building_name         | string     |                               |
 | telephone_number      | string     | null: false                   |

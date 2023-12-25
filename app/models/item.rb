@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  #  has_one :purchase  は購入機能にて実装をする内容のため
+  has_one :purchase
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :product_condition
