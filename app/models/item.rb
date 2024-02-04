@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_one_attached :image
+  has_many_attached :images
   has_one :purchase
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :estimated_delivery
   belongs_to :user
 
-  validates :image, presence: true
+  validates :images, length: { minimum: 1, maximum: 5, message: "は1枚以上5枚以下にしてください" }
   validates :product, presence: true
   validates :product_description, presence: true
   validates :category_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
