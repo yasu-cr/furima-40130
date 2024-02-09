@@ -48,9 +48,9 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Price is not a number')
     end
     it 'imageが添付されていないとき' do
-      @item.image = nil
+      @item.images = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Image can't be blank")
+      expect(@item.errors.full_messages).to include("Images can't be blank")
     end
     it 'priceが半角数字以外が含まれるとき' do
       @item.price = '１０００'
