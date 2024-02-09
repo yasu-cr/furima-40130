@@ -20,27 +20,27 @@ RSpec.describe Item, type: :model do
     it 'category_idが空のとき' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category can't be blank")
+      expect(@item.errors.full_messages).to include("Category を入力してください")
     end
     it 'product_condition_idが空のとき' do
       @item.product_condition_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Product condition can't be blank")
+      expect(@item.errors.full_messages).to include("Product condition を入力してください")
     end
     it 'shipping_fee_payer_idが空のとき' do
       @item.shipping_fee_payer_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping fee payer can't be blank")
+      expect(@item.errors.full_messages).to include("Shipping fee payer を入力してください")
     end
     it 'shipping_region_idが空のとき' do
       @item.shipping_region_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping region can't be blank")
+      expect(@item.errors.full_messages).to include("Shipping region を入力してください")
     end
     it 'estimated_delivery_idが空のとき' do
       @item.estimated_delivery_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Estimated delivery can't be blank")
+      expect(@item.errors.full_messages).to include("Estimated delivery を入力してください")
     end
     it 'priceが空のとき' do
       @item.price = ''
@@ -48,9 +48,9 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Price is not a number')
     end
     it 'imageが添付されていないとき' do
-      @item.image = nil
+      @item.images = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Image can't be blank")
+      expect(@item.errors.full_messages).to include("Images can't be blank")
     end
     it 'priceが半角数字以外が含まれるとき' do
       @item.price = '１０００'
